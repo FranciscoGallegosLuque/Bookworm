@@ -16,6 +16,14 @@ struct AddBookView: View {
     @State private var genre = "Fantasy"
     @State private var review = ""
     
+    func formValidator(title: String, author: String, review: String) -> Bool {
+        if (title.isEmpty || author.isEmpty || review.isEmpty) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
 
     var body: some View {
@@ -48,6 +56,7 @@ struct AddBookView: View {
                         modelContext.insert(newBook)
                         
                     }
+                    .disabled(!formValidator(title: title, author: author, review: review))
                 }
             }
         }
