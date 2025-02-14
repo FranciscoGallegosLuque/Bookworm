@@ -15,6 +15,8 @@ struct AddBookView: View {
     @State private var rating = 3
     @State private var genre = "Fantasy"
     @State private var review = ""
+    @State private var date = Date.now
+    
     
     func formValidator(title: String, author: String, review: String) -> Bool {
         if (title.isEmpty || author.isEmpty || review.isEmpty) {
@@ -52,7 +54,7 @@ struct AddBookView: View {
                 
                 Section {
                     Button("Save") {
-                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
+                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating, date: date)
                         modelContext.insert(newBook)
                         
                     }
